@@ -24,6 +24,22 @@ Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e v
 - Rotas para consulta de intervalos de prêmios entre vitórias de produtores
 - Estrutura pronta para testes automatizados com Vitest e Supertest
 
+[//]: # (Diagrama Mermaid do fluxo principal da aplicação)
+
+## Fluxo Principal da Aplicação
+
+```mermaid
+flowchart TD
+   A[Início da Aplicação] --> B[Lê arquivo movielist.csv]
+   B --> C[Importa dados para SQLite]
+   C --> D[API disponível]
+   D --> E{Requisição de usuário}
+   E -->|GET /producers/intervals| F[Calcula intervalos de prêmios]
+   E -->|GET /producers/movies| G[Retorna lista de filmes]
+   F --> H[Retorna JSON com intervalos]
+   G --> I[Retorna JSON com filmes]
+```
+
 ## Tecnologias Utilizadas
 - [Node.js](https://nodejs.org/)
 - [Fastify](https://www.fastify.io/)
@@ -50,12 +66,8 @@ Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e v
 3. **Configure o ambiente:**
    - Copie o arquivo `.env.exemple` para `.env` e ajuste as variáveis se necessário.
 
-4. **Rode as migrations:**
-   ```bash
-   npm run knex -- migrate:latest
-   ```
 
-5. **Inicie a aplicação:**
+4. **Inicie a aplicação:**
    ```bash
    npm run start
    ```
