@@ -26,19 +26,7 @@ Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e v
 
 [//]: # (Diagrama Mermaid do fluxo principal da aplicação)
 
-## Fluxo Principal da Aplicação
 
-```mermaid
-flowchart TD
-   A[Início da Aplicação] --> B[Lê arquivo movielist.csv]
-   B --> C[Importa dados para SQLite]
-   C --> D[API disponível]
-   D --> E{Requisição de usuário}
-   E -->|GET /producers/intervals| F[Calcula intervalos de prêmios]
-   E -->|GET /producers/movies| G[Retorna lista de filmes]
-   F --> H[Retorna JSON com intervalos]
-   G --> I[Retorna JSON com filmes]
-```
 
 ## Tecnologias Utilizadas
 - [Node.js](https://nodejs.org/)
@@ -50,12 +38,25 @@ flowchart TD
 - [Supertest](https://github.com/visionmedia/supertest)
 - [Zod](https://zod.dev/)
 
+## Fluxo Principal da Aplicação
+
+```mermaid
+flowchart TD
+   A[Início da Aplicação] --> B[Lê arquivo .CSV]
+   B --> C[Importa dados para SQLite]
+   C --> D[API disponível]
+   D --> E{Requisição de usuário}
+   E -->|GET /producers/intervals| F[Calcula intervalos de prêmios]
+   E -->|GET /producers/movies| G[Retorna lista de filmes]
+   F --> H[Retorna JSON com intervalos]
+   G --> I[Retorna JSON com filmes]
+```
+
 ## Como rodar o projeto
 
 1. **Clone o repositório:**
    ```bash
    git clone <url-do-repositorio>
-   cd ApiRest
    ```
 
 2. **Instale as dependências:**
@@ -66,8 +67,10 @@ flowchart TD
 3. **Configure o ambiente:**
    - Copie o arquivo `.env.exemple` para `.env` e ajuste as variáveis se necessário.
 
+4. **Configure o ambiente:**
+   - adicione o arquivo base .csv dos filmes na pasta `src/resources/` para subir os dados de teste no banco.
 
-4. **Inicie a aplicação:**
+5. **Inicie a aplicação:**
    ```bash
    npm run start
    ```
