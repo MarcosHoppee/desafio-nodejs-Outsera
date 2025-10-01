@@ -56,7 +56,7 @@ flowchart TD
 
 1. **Clone o repositório:**
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/MarcosHoppee/desafio-nodejs-Outsera.git
    ```
 
 2. **Instale as dependências:**
@@ -98,5 +98,6 @@ npm run test
 - O projeto utiliza Knex para manipulação do banco de dados e migrations.
 - O arquivo de importação CSV deve estar no formato esperado pelo serviço de importação.
 - O endpoint `/producers/intervals` retorna os produtores com os menores e maiores intervalos entre vitórias, conforme o desafio proposto.
+
 
 
