@@ -1,7 +1,7 @@
 
-# Golden Raspberry Awards API - Outsera
+# Golden Raspberry Awards API
 
-Este projeto é uma API RESTful desenvolvida em Node.js utilizando Fastify, Knex e SQLite, para o desafio técnico da empresa.
+Este projeto é uma API RESTful desenvolvida em Node.js utilizando Fastify, Knex e SQLite, para o desafio técnico da empresa Outsera.
 
 ## Especificação do Teste
 Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e vencedores da categoria Pior Filme do Golden Raspberry Awards.
@@ -25,7 +25,6 @@ Desenvolva uma API RESTful para possibilitar a leitura da lista de indicados e v
 - Estrutura pronta para testes automatizados com Vitest e Supertest
 
 [//]: # (Diagrama Mermaid do fluxo principal da aplicação)
-
 
 
 ## Tecnologias Utilizadas
@@ -56,7 +55,7 @@ flowchart TD
 
 1. **Clone o repositório:**
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/MarcosHoppee/desafio-nodejs-Outsera.git
    ```
 
 2. **Instale as dependências:**
@@ -65,10 +64,15 @@ flowchart TD
    ```
 
 3. **Configure o ambiente:**
-   - Copie o arquivo `.env.exemple` para `.env` e ajuste as variáveis se necessário.
+   - Adicione o arquivo base .csv dos filmes na pasta `/resources/` para subir os dados no banco em memória.
 
-4. **Configure o ambiente:**
-   - adicione o arquivo base .csv dos filmes na pasta `src/resources/` para subir os dados de teste no banco.
+4. **O arquivo deve seguir o seguinte formato:**
+   ```csv
+   year;title;studios;producers;winner
+   1980;Can't Stop the Music;Associated Film Distribution;Allan Carr;yes
+   1980;Cruising;Lorimar Productions, United Artists;Jerry Weintraub;
+   1980;The Formula;MGM, United Artists;Steve Shagan;
+   ```
 
 5. **Inicie a aplicação:**
    ```bash
@@ -78,7 +82,7 @@ flowchart TD
 ## Endpoints principais
 
 - `GET /producers/intervals` — Retorna os produtores com maior e menor intervalo entre vitórias.
-- `GET /producers/movies` — Retorna todos os filmes cadastrados.
+- `GET /producers/movies` — Retorna todos os filmes cadastrados (extra).
 
 ## Testes
 
@@ -93,10 +97,11 @@ npm run test
 - `src/services/` — Serviços de importação e lógica de negócio
 - `src/routes/` — Rotas da API
 - `test/` — Testes automatizados
+- `resources/` — Pasta onde serão importados os arquivos
 
 ## Observações
 - O projeto utiliza Knex para manipulação do banco de dados e migrations.
-- O arquivo de importação CSV deve estar no formato esperado pelo serviço de importação.
+- O arquivo CSV de importação deve estar no formato esperado pelo serviço.
 - O endpoint `/producers/intervals` retorna os produtores com os menores e maiores intervalos entre vitórias, conforme o desafio proposto.
 
 

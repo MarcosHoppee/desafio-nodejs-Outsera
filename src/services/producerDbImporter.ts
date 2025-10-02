@@ -1,11 +1,7 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import csv from 'csv-parser';
-import knex from 'knex';
+import { knex } from '../database/knex-config-db';
 import { randomUUID } from 'node:crypto';
-import { config } from '../database/knex-config-db';
-
-const db = knex(config);
 
 interface ProducerMovie {
   id: string;
@@ -47,9 +43,7 @@ export async function importProducersFromCSV(csvFilePath: string) {
             console.log('Nenhum registro válido encontrado no CSV. Nenhuma inserção foi feita.');
             return resolve();
           }
-          await db.migrate.latest();
-          await db('producerMovies').del();
-          await db('producerMovies').insert(results);
+          await knex('producerMovies').insert(results);
 
           console.log(`Import completed successfully! Total records: ${results.length}`);
           resolve();
@@ -64,18 +58,3 @@ export async function importProducersFromCSV(csvFilePath: string) {
       });
   });
 }
-
-const resourcesPath = path.resolve(__dirname, '../resources');
-const files = fs.readdirSync(resourcesPath);
-const firstCsvFile = files.find(file => file.endsWith('.csv'));
-
-if (!firstCsvFile) {
-  console.error('No CSV file found in resources folder.');
-  process.exit(1);
-}
-
-const csvFilePath = path.join(resourcesPath, firstCsvFile);
-
-importProducersFromCSV(csvFilePath)
-  .then(() => console.log('Import completed.'))
-  .catch(err => console.error('Import error', err));

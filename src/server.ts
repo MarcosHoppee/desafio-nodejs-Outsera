@@ -1,13 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { app, setupDatabase } from './app';
-import { env } from './env';
 import { importProducersFromCSV } from './services/producerDbImporter';
 
 async function startServer() {
   try {
     await setupDatabase();
-    const resourcesDir = path.join(__dirname, 'resources');
+    const resourcesDir = path.join(__dirname, '../resources');
 
     if (!fs.existsSync(resourcesDir)) {
       throw new Error(`Pasta não encontrada: ${resourcesDir}`);
@@ -23,12 +22,12 @@ async function startServer() {
         const csvFilePath = path.join(resourcesDir, csvFile);
         console.log(`Importando dados do arquivo: ${csvFilePath}`);
         await importProducersFromCSV(csvFilePath);
-        console.log(`Dados do arquivo ${csvFile} carregados no banco!`);
+        console.log(`Dados do arquivo ${csvFile} carregados em memoria`);
       }
     }
 
     await app.listen({ 
-      port: env.PORT 
+      port: 3333
     });
     console.log('HTTP Server Running!')
   } catch (err) {
