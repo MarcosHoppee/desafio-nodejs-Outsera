@@ -105,3 +105,4 @@ npm run test
 - O endpoint `/producers/intervals` retorna os produtores com os menores e maiores intervalos entre vitórias, conforme o desafio proposto.
 
 
+
